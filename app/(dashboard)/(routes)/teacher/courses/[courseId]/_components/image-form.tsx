@@ -2,25 +2,16 @@
 
 import * as z from "zod";
 import axios from "axios";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
 
-import {
-    Form,
-    FormControl,
-    FormField,
-    FormItem,
-    FormMessage,
-} from "@/components/ui/form";
+
 import { Button } from "@/components/ui/button";
 import { ImageIcon, Pencil, PlusCircle } from "lucide-react";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
-import { cn } from "@/lib/utils";
-import { Textarea } from "@/components/ui/textarea";
 import { Course } from "@prisma/client";
 import Image from "next/image";
+import { FileUpload } from "@/components/file-upload";
 
 interface ImageFormProps {
     initialData: Course
@@ -44,14 +35,7 @@ export const ImageForm = ({
 
     const router = useRouter();
 
-    const form = useForm<z.infer<typeof formSchema>>({
-        resolver: zodResolver(formSchema),
-        defaultValues: {
-            imageUrl: initialData?.imageUrl || "",
-        }
-    });
-
-    const { isSubmitting, isValid } = form.formState;
+    
     const onSubmit = async (values: z.infer<typeof formSchema>) => {
         try {
             await axios.patch(`/api/courses/${courseId}`, values);
@@ -104,7 +88,18 @@ export const ImageForm = ({
             )}
             {isEditing && (
                 <div>
-                    <FileUpload
+                    <FileUpload 
+                        endpoint="courseImage"
+                        onChange={(url) => {
+                            if (url) {
+                                onSubmit({ imageUrl: url });
+                            }
+                        }}
+                    />
+
+                    <div className="text-xs text-muted-foreground mt-4">
+                        16:9 aspect ratio recommended
+                    </div>
                 </div>
 
             )}  
