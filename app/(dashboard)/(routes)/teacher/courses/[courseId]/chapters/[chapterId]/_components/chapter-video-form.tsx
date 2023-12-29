@@ -5,6 +5,7 @@ import axios from "axios";
 
 
 import { Button } from "@/components/ui/button";
+import MuxPlayer from "@mux/mux-player-react";
 import { Pencil, PlusCircle, Video } from "lucide-react";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
@@ -77,7 +78,9 @@ export const ChapterVideoForm = ({
                     </div>
                 ) : (
                     <div className="relative aspect-video mt-2">
-                        Video uploaded!
+                        <MuxPlayer 
+                            playbackId={initialData?.muxData?.playbackId || ""}
+                        />
                     </div>
                 )
             )}
@@ -87,7 +90,7 @@ export const ChapterVideoForm = ({
                         endpoint="chapterVideo"
                         onChange={(url) => {
                             if (url) {
-                                onSubmit({ VideoUrl: url });
+                                onSubmit({ videoUrl: url });
                             }
                         }}
                     />
