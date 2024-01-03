@@ -65,14 +65,14 @@ export async function DELETE(
             }
         });
 
-        const publishedChaptersInChapter = await db.chapter.findMany({
+        const publishedChaptersInCourse = await db.chapter.findMany({
             where: {
                 courseId: params.courseId,
                 isPublished: true,
             }
         });
 
-        if (!publishedChaptersInChapter.length) {
+        if (!publishedChaptersInCourse.length) {
             await db.course.update({
                 where: {
                     id: params.courseId,
