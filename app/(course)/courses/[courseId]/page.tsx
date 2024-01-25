@@ -1,4 +1,4 @@
-const CoursePage =() => {
+const CourseIdPage = () => {
     return (
         <div>
             Watch the course
@@ -6,4 +6,4 @@ const CoursePage =() => {
     );
 }
 
-export default CoursePage;
+export default CourseIdPage;
