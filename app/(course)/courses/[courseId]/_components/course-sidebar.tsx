@@ -45,7 +45,7 @@ export const CourseSidebar = async ({
                 {course.chapters.map((chapter) => (
                     <CourseSidebarItem 
                         key={chapter.id}
-                        title={chapter.id}
+                        id={chapter.id}
                         label={chapter.title}
                         isCompleted={!!chapter.userProgress?.[0]?.isCompleted}
                         courseId={course.id}
