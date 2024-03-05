@@ -1,16 +1,16 @@
 import { db } from "@/lib/db";
-import { Category, Chapter, Course } from "@prisma/client";
+import { Location, Chapter, Course } from "@prisma/client";
 import { getProgress } from "@/actions/get-progress";
 
-type CourseWithProgressWithCategory = Course & {
-    category: Category;
+type CourseWithProgressWithLocation = Course & {
+    location: Location;
     chapters: Chapter[];
     progress: number | null;
 }
 
 type DashboardCourses = {
-    completedCourses: CourseWithProgressWithCategory[];
-    coursesInProgress: CourseWithProgressWithCategory[];
+    completedCourses: CourseWithProgressWithLocation[];
+    coursesInProgress: CourseWithProgressWithLocation[];
 }
 
 export const getDashboardCourses = async (userId: string): Promise<DashboardCourses> => {
@@ -22,7 +22,7 @@ export const getDashboardCourses = async (userId: string): Promise<DashboardCour
             select: {
                 course: {
                     include: {
-                        category: true,
+                        location: true,
                         chapters: {
                             where: {
                                 isPublished: true,
@@ -33,7 +33,7 @@ export const getDashboardCourses = async (userId: string): Promise<DashboardCour
             }
         });
 
-        const courses = purchasedCourses.map((purchase) => purchase.course) as CourseWithProgressWithCategory[];
+        const courses = purchasedCourses.map((purchase) => purchase.course) as CourseWithProgressWithLocation[];
 
         for (let course of courses) {
             const progress = await getProgress(userId, course.id);

@@ -22,22 +22,22 @@ import { Textarea } from "@/components/ui/textarea";
 import { Course } from "@prisma/client";
 import { Combobox } from "@/components/ui/combobox";
 
-interface CategoryFormProps {
+interface LocationFormProps {
     initialData: Course;
     courseId: string
     options: {label: string; value: string;}[];
 };
 
 const formSchema = z.object({
-   categoryId: z.string().min(1),
+   locationId: z.string().min(1),
 });
 
-export const CategoryForm = ({
+export const LocationForm = ({
     initialData,
     courseId,
     options,
 
-}: CategoryFormProps) => {
+}: LocationFormProps) => {
 
     const [isEditing, setIsEditing] = useState(false)
 
@@ -48,7 +48,7 @@ export const CategoryForm = ({
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
         defaultValues: {
-            categoryId: initialData?.categoryId || "",
+            locationId: initialData?.locationId || "",
         },
     });
 
@@ -65,19 +65,19 @@ export const CategoryForm = ({
         
     }
 
-    const selectedOption = options.find((option) => option.value === initialData.categoryId);
+    const selectedOption = options.find((option) => option.value === initialData.locationId);
 
     return (
         <div className="mt-6 border bg-slate-100 rounded-md p-4">
             <div className="font-medium flex items-center justify-between">
-                Course category
+                Choose your location
                 <Button variant="ghost" onClick={toggleEdit}>
                     {isEditing ? (
                         <>Cancel</>
                     ) : (
                         <>
                         <Pencil className="h-4 w-4 mr-2" />
-                        Edit category
+                        Edit location
                         </>
                     )}
                 </Button>
@@ -85,9 +85,9 @@ export const CategoryForm = ({
             {!isEditing && (
                 <p className={cn(
                     "text-sm mt-2",
-                    !initialData.categoryId && "text-slate-500 italic"
+                    !initialData.locationId && "text-slate-500 italic"
                 )}>
-                    {selectedOption?.label || "No category"}
+                    {selectedOption?.label || "No location"}
                 </p>
             )}
             {isEditing && (
@@ -98,7 +98,7 @@ export const CategoryForm = ({
                     >
                         <FormField
                             control={form.control}
-                            name="categoryId"
+                            name="locationId"
                             render={({field}) => (
                                 <FormItem>
                                     <FormControl>

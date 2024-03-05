@@ -6,7 +6,7 @@ import { redirect } from "next/navigation";
 import { TitleForm } from "./_components/title-form";
 import { DescriptionForm } from "./_components/description-form";
 import { ImageForm } from "./_components/image-form";
-import { CategoryForm } from "./_components/category-form";
+import { LocationForm } from "./_components/location-form";
 import { PriceForm } from "./_components/price-form";
 import { AttachmentForm } from "./_components/attachment-form";
 import { ChaptersForm } from "./_components/chapters-form";
@@ -45,7 +45,7 @@ const CourseIdPage  = async ({
         },
     });
 
-    const categories = await db.category.findMany({
+    const locations = await db.location.findMany({
         orderBy: {
             name: "asc",
         },
@@ -61,7 +61,7 @@ const CourseIdPage  = async ({
         course.description,
         course.imageUrl,
         course.price,
-        course.categoryId,
+        course.locationId,
         course.chapters.some(chapter => chapter.isPublished),
     ];
 
@@ -120,12 +120,12 @@ const CourseIdPage  = async ({
                         courseId={course.id}
                     />
 
-                    <CategoryForm 
+                    <LocationForm 
                         initialData={course}
                         courseId={course.id}
-                        options={categories.map((category) => ({
-                            label: category.name,
-                            value: category.id,
+                        options={locations.map((location) => ({
+                            label: location.name,
+                            value: location.id,
                         }))}
                     />
                 </div>

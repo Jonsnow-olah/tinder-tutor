@@ -1,5 +1,5 @@
 import { db } from "@/lib/db";
-import { Categories } from "./_components/categories";
+import { Locations } from "./_components/locations";
 import { SearchInput } from "@/components/search-input";
 import { getCourses } from "@/actions/get-courses";
 import { auth } from "@clerk/nextjs";
@@ -9,7 +9,7 @@ import { CoursesList } from "@/components/courses-list";
 interface SearchPageProps {
     searchParams: {
         title: string;
-        categoryId: string;
+        locationId: string;
     }
 };
 
@@ -22,7 +22,7 @@ const SearchPage = async({
         return redirect("/");
     }
 
-    const categories = await db.category.findMany({
+    const locations = await db.location.findMany({
         orderBy: {
             name: "asc"
         }
@@ -39,8 +39,8 @@ const SearchPage = async({
             <SearchInput />
         </div>
             <div className="p-6 space-y-4">
-                <Categories 
-                    items={categories}
+                <Locations 
+                    items={locations}
                 />
 
                 <CoursesList items={courses}/>

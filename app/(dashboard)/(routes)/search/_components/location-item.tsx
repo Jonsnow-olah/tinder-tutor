@@ -4,33 +4,33 @@ import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { IconType } from "react-icons";
 import qs from "query-string";
 
-interface CategoryItemProps {
+interface LocationItemProps {
     label: string;
     value?: string;
     icon?: IconType;
 };
 
-export const CategoryItem = ({
+export const LocationItem = ({
     label,
     value,
     icon: Icon,
-}: CategoryItemProps) => {
+}: LocationItemProps) => {
 
     const pathname = usePathname();
     const router = useRouter();
     const searchParams = useSearchParams();
 
-    const currentCategoryId = searchParams.get("categoryId");
+    const currentLocationId = searchParams.get("locationId");
     const currentTitle = searchParams.get("title");
 
-    const isSelected = currentCategoryId === value;
+    const isSelected = currentLocationId === value;
 
     const onClick = () => {
         const url = qs.stringifyUrl({
             url: pathname,
             query: {
                 title: currentTitle,
-                categoryId: isSelected ? null : value,
+                locationId: isSelected ? null : value,
             }
         }, {skipNull: true, skipEmptyString: true });
 

@@ -4,22 +4,22 @@ const database = new PrismaClient();
 
 async function main() {
     try {
-        await database.category.createMany({
+        await database.location.createMany({
             data: [
-                {name: "Computer Science"},
-                {name: "Music"},
-                {name: "Fitness"},
-                {name: "Photography"},
-                {name: "Accounting"},
-                {name: "Engineering"},
-                {name: "Filming"},
+                {name: "Lagos state"},
+                {name: "Rivers state"},
+                {name: "FCT"},
+                {name: "Osun state"},
+                {name: "Ogun state"},
+                {name: "Imo state"},
+                {name: "Kano state"},
             ]
         });
 
         console.log("success");
 
     } catch (error) {
-        console.log("Error seeding the database categories", error);
+        console.log("Error seeding the database locations", error);
     } finally {
         await database.$disconnect();
     }

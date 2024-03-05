@@ -15,20 +15,20 @@ export const SearchInput = () => {
     const router = useRouter();
     const pathname = usePathname();
 
-    const currentCategoryId = searchParams.get("categoryId");
+    const currentLocationId = searchParams.get("locationId");
 
     useEffect(() => {
         const url = qs.stringifyUrl({
             url: pathname,
             query: {
-                categoryId: currentCategoryId,
+                locationId: currentLocationId,
                 title: debouncedValue,
             }
         }, {skipEmptyString: true, skipNull: true});
 
         router.push(url);
 
-    }, [debouncedValue, currentCategoryId, router, pathname]);
+    }, [debouncedValue, currentLocationId, router, pathname]);
 
 
     return (
