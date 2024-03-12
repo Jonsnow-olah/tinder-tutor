@@ -8,9 +8,11 @@ import { Separator } from "@/components/ui/separator";
 import { Preview } from "@/components/preview";
 
 import { VideoPlayer } from "./_components/video-player";
+import { FaTwitter } from "react-icons/fa";
 
 import { CourseEnrollButton } from "../../_components/course-enroll-button";
 import { CourseProgressButton } from "../../_components/course-progress-button";
+import Link from "next/link";
 
 const ChapterIdPage = async ({
   params
@@ -96,6 +98,18 @@ const ChapterIdPage = async ({
           <div>
             <Preview value={chapter.description!} />
           </div>
+
+          <Separator />
+
+          <div>
+            
+            <button className="py-1 px-1 mt-3 text-sm border border-slate-200 rounded-full flex items-center gap-x-1 hover:border-sky-700 transition">
+              <Preview value={course.social!} />
+            </button>
+            
+          </div>
+
+
           {!!attachments.length && (
             <>
               <Separator />

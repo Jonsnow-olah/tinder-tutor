@@ -12,6 +12,7 @@ import { AttachmentForm } from "./_components/attachment-form";
 import { ChaptersForm } from "./_components/chapters-form";
 import { Banner } from "@/components/banner";
 import { Actions } from "./_components/actions";
+import { SocialForm } from "./_components/social-form";
 
 
 const CourseIdPage  = async ({
@@ -59,6 +60,7 @@ const CourseIdPage  = async ({
     const requiredFields = [
         course.title,
         course.description,
+        course.social,
         course.imageUrl,
         course.price,
         course.locationId,
@@ -111,6 +113,10 @@ const CourseIdPage  = async ({
                     />
                     
                     <DescriptionForm
+                        initialData={course}
+                        courseId={course.id}
+                    />
+                    <SocialForm
                         initialData={course}
                         courseId={course.id}
                     />

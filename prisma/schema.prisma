@@ -14,6 +14,7 @@ model Course {
   userId String
   title String @db.Text
   description String? @db.Text
+  social String? @db.Text
   imageUrl String? @db.Text
   price Float?
   isPublished Boolean @default(false)
@@ -51,6 +52,7 @@ model Attachment {
 
   @@index([courseId])
 }
+
 
 model Chapter {
   id String @id @default(uuid())

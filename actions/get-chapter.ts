@@ -31,6 +31,7 @@ export const getChapter = async({
             },
             select: {
                 price: true,
+                social: true,
             }
         });
 

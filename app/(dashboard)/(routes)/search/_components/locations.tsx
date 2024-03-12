@@ -3,11 +3,7 @@
 import { Location } from "@prisma/client";
 import { IconType } from "react-icons";
 
-import {
-FcApproval,
-
-
-} from "react-icons/fc";
+import { FcApproval } from "react-icons/fc";
 import { LocationItem } from "./location-item";
 
 
