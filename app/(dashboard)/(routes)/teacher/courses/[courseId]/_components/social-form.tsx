@@ -101,7 +101,7 @@ export const SocialForm = ({
                                     <FormControl>
                                         <Input
                                             disabled={isSubmitting}
-                                            placeholder="e.g 'twitter.com/yourtwitterusername...'"
+                                            placeholder="e.g 'yourtwitterusername...'"
                                             {...field}
                                         />
                                     </FormControl>

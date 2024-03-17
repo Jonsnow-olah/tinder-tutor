@@ -102,12 +102,21 @@ const ChapterIdPage = async ({
           <Separator />
 
           <div>
-            
-            <button className="py-1 px-1 mt-3 text-sm border border-slate-200 rounded-full flex items-center gap-x-1 hover:border-sky-700 transition">
-              <Preview value={course.social!} />
-            </button>
-            
-          </div>
+  <button className="py-1 px-1 mt-3 text-sm border border-slate-200 rounded-full flex items-center gap-x-1 hover:border-sky-700 transition">
+    <FaTwitter className="w-4 h-4" />
+    <a
+      href={`https://twitter.com/${course.social}`}
+      className="hover:underline"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      {course.social}
+    </a>
+  </button>
+</div>
+
+
+
 
 
           {!!attachments.length && (
